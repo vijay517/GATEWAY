@@ -1,0 +1,8 @@
+----- GREENGRASS GROUP DETAILS------------------
+GROUP_NAME:labIoTGGroup
+GROUP_ID:8f0236da-aaa5-46c8-8863-7d4d6ce17783
+
+----- GREENGRASS CORE DETAILS------------------
+GREENGRASS_CORE_NAME:labIoTGGroup_Core
+GREENGRASS_CORE_POLICY_NAME:labIoTGGGroup_Core-policy
+
