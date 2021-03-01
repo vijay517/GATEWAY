@@ -15,11 +15,11 @@ set -e
 #-----------------------------------------------------------------------------------------------------------
 #     STEP 2 : GREENGRASS REQUIRES THAT THE SECURITY IS IMPROVED BY ENABLING HARDLINK AND SOFTLINK PROTECTION
 #-----------------------------------------------------------------------------------------------------------
-n=$(grep 'fs.protected_hardlinks = 1' /etc/sysctl.d/00-defaults.conf | wc -l)
-if (($n == 0)); then echo 'fs.protected_hardlinks = 1' | sudo tee -a /etc/sysctl.d/00-defaults.conf; fi 
+n=$(grep 'fs.protected_hardlinks = 1' /etc/sysctl.d/99-sysctl.conf | wc -l)
+if (($n == 0)); then echo 'fs.protected_hardlinks = 1' | sudo tee -a /etc/sysctl.d/99-sysctl.conf; fi 
 
-n=$(grep 'fs.protected_symlinks = 1' /etc/sysctl.d/00-defaults.conf | wc -l)
-if (($n == 0)); then echo 'fs.protected_symlinks = 1' | sudo tee -a /etc/sysctl.d/00-defaults.conf; fi 
+n=$(grep 'fs.protected_symlinks = 1' /etc/sysctl.d/99-sysctl.conf | wc -l)
+if (($n == 0)); then echo 'fs.protected_symlinks = 1' | sudo tee -a /etc/sysctl.d/99-sysctl.conf; fi 
 sudo sysctl --system
 
 #-----------------------------------------------------------------------------------------------------
@@ -53,9 +53,12 @@ OUTPUT=$(aws greengrass get-group --group-id $GROUP_ID)
 
 if [ -z $OUTPUT ]
 then
+	echo "GROUP NOT FOUND"
 	$ROOTDIR/executable_files/setup_greengrass_group_core.sh
+
 	#Configure the green grass configuration json file
 	$ROOTDIR/executable_files/setup_greengrass_config_file.sh
+
 	#Place the AWS IoT Root Certificate Authority in the /greengrass/certs folder
 	cd /greengrass/certs/
 	sudo wget -O root.ca.pem https://www.amazontrust.com/repository/AmazonRootCA1.pem
@@ -64,6 +67,7 @@ then
 else
 	echo "GROUP FOUND"
 fi
+
 
 #Sucessfully start greengrass core
 cd /greengrass/ggc/core/
