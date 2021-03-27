@@ -64,6 +64,7 @@ if [ $CONFIG_STATUS == "No" ]; then
 	echo "Staus config is No"
 	#Configure the green grass configuration json file
 	$ROOTDIR/executable_files/setup_greengrass_config_file.sh
+
 	#Place the AWS IoT Root Certificate Authority in the /greengrass/certs folder
 	cd /greengrass/certs/
 	sudo wget -O root.ca.pem https://www.amazontrust.com/repository/AmazonRootCA1.pem
