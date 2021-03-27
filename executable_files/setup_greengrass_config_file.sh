@@ -9,8 +9,7 @@ ROOTDIR=~/Desktop/GATEWAY
 #-------------------------------------------------------------------------------------------------
 
 #Checking if the device info text in present
-if [ ! -f $ROOTDIR/gatewayinfo.txt ]
-then
+if [ ! -f $ROOTDIR/gatewayinfo.txt ]; then
         echo "gateway.txt file is not present in the directory: ${ROOTDIR}"
         exit -1
 fi
@@ -51,14 +50,12 @@ sudo sed -i -E "s+file://+file:///greengrass/+" /greengrass/config/config.json
 #                                STEP 2 - Configure config file for greengrass software
 #-------------------------------------------------------------------------------------------------------
 
-if [ ! -f $ROOTDIR/certificates/certificate.pem.crt ]
-then
+if [ ! -f $ROOTDIR/certificates/certificate.pem.crt ]; then
         echo "certificate.pem.crt file is not present in the directory: ${ROOTDIR}/certificates"
         exit -1
 fi
 
-if [ ! -f $ROOTDIR/certificates/private.pem.key ]
-then
+if [ ! -f $ROOTDIR/certificates/private.pem.key ]; then
         echo "private.pem.key file is not present in the directory: ${ROOTDIR}/certificates"
         exit -1
 fi

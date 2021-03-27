@@ -14,8 +14,7 @@ ROOTDIR=~/Desktop/GATEWAY
 result=$(command -v aws | wc -c)
 
 #If the AWS CLI is not installed, then the AWS CLI V2 is installed.
-if [ $result -eq 0 ]
-then
+if [ $result -eq 0 ]; then
         echo "The AWS CLI is not installed."
         curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
         unzip awscli-bundle.zip
@@ -28,8 +27,7 @@ fi
 #-----------------------------------------------------------------------------------------------------
 
 #Checking if the csv files containing the authentication keys exist.
-if [ ! -f $ROOTDIR/certificates/keys.csv ]
-then
+if [ ! -f $ROOTDIR/certificates/keys.csv ]; then
         echo "authentication file keys.csv does not exist in the directory:" $(pwd)
         exit -1
 fi
@@ -47,5 +45,4 @@ aws configure set aws_access_key_id $ACCESS_KEY
 
 #Setting the aws secret key
 SECRET_KEY=$(sed -n '2p' $ROOTDIR/certificates/keys.csv | cut -d',' -f2)
-aws configure set aws_secret_access_key  $SECRET_KEY
-
+aws configure set aws_secret_access_key $SECRET_KEY

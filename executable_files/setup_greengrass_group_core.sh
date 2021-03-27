@@ -11,8 +11,7 @@ ROOTDIR=~/Desktop/GATEWAY
 #-------------------------------------------------------------------------------------------------
 
 #Checking if the device info text in present
-if [ ! -f $ROOTDIR/gatewayinfo.txt ]
-then
+if [ ! -f $ROOTDIR/gatewayinfo.txt ]; then
         echo "gatewayinfo.txt file is not present in the directory: ${ROOTDIR}"
         exit -1
 fi

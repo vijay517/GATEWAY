@@ -4,7 +4,7 @@
 set -e
 
 #Setting date and time
-date=$(curl -I 'https://google.com/' 2>/dev/null | grep -i '^date:' | sed 's/^[Dd]ate: //g')
+date=$(curl -s --head http://google.com | grep ^Date: | sed 's/Date: //g')
 echo "Setting the date and time as"
 sudo date -s "${date}"
 
