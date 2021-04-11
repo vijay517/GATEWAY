@@ -86,7 +86,8 @@ echo $GREENGRASS_CORE_STATUS
 $ROOTDIR/executable_files/display_msg.sh "ANOMALY DETECTION SCRIPT"
 if [[ "$GREENGRASS_CORE_STATUS" =~ "Greengrass successfully started with PID" ]]; then
 	cd ~/nupic/examples/opf/clients/hotgym/anomaly/one_gym
-	python run.py 
+	python run.py
+	#sudo /greengrass/ggc/core/greengrassd stop 
 else
 	echo "ANOMALY DETECTION SCRIPT IS NOT EXECUTED AS THE GREENGRASS SOFTWARE IS NOT RUNNING "
 fi
